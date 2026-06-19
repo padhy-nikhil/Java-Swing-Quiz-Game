@@ -23,7 +23,8 @@
 ## 📌 About
 
 **QuizGame** is a desktop application that presents multiple-choice questions, tracks scores in real time, and displays a final result screen — all built with zero external libraries. Everything runs on plain Java 16+ and the built-in Swing toolkit.
-![QuizGame Screenshot](screenshot.png)
+
+  ![QuizGame Screenshot](screenshot.png)
 
 This project was developed as part of an internship at **[Pinnacle Labs](https://pinnacleinternship.com)**.
 
