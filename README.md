@@ -20,7 +20,7 @@ A sleek, responsive, and fully automated **Java Swing** desktop application desi
 
 The codebase follows a modular design pattern, strictly separating data models, UI layers, and runtime logical components:
 
-```text
+
 QuizGame/
 └── src/
     └── com/
@@ -33,40 +33,35 @@ QuizGame/
             │   └── GameEngine.java # Main Controller managing core game loops and timing
             └── view/
                 └── QuizWindow.java # GUI View layout rendering all Swing elements
-🛠️ Technology Stack & Concepts Used
-Language: Java (JDK 8+)
 
-GUI Framework: Java Swing & AWT
-
-Concurrency: javax.swing.Timer for asynchronous event dispatch looping.
-
-Layout Managers: GridBagLayout, BorderLayout, and GridLayout for fully responsive scaling profiles.
 
 🚀 Getting Started
 Prerequisites
-Make sure you have Java Development Kit (JDK 8 or higher) installed on your machine.
+Make sure you have Java Development Kit (JDK 8 or higher) installed on your machine. You can verify this by running java -version in your terminal.
 
-Installation & Execution (Terminal)
+💻 Installation & Execution (Using Terminal)
 Clone the repository:
 
 Bash
-git clone [https://github.com/YOUR_GITHUB_USERNAME/java-swing-quiz-game.git](https://github.com/YOUR_GITHUB_USERNAME/java-swing-quiz-game.git)
+git clone https://github.com/YOUR_GITHUB_USERNAME/java-swing-quiz-game.git
 cd java-swing-quiz-game
-Compile the packages:
+Compile all Java files: This command creates a bin directory and compiles all your packages into it:
 
 Bash
 javac -d bin src/com/quizgame/model/*.java src/com/quizgame/view/*.java src/com/quizgame/engine/*.java src/com/quizgame/Main.java
-Run the application:
+Run the application: Launch the game by pointing Java to your compiled Main class inside the classpath:
 
 Bash
 java -cp bin com.quizgame.Main
-Running in IntelliJ IDEA
-Open IntelliJ IDEA and select Open.
+🛠️ Running in IntelliJ IDEA
+If you prefer using an IDE instead of the terminal, follow these simple steps:
 
-Navigate to and choose the root QuizGame folder.
+Open IntelliJ IDEA and click Open.
 
-Right-click the src directory in the Project view panel -> Mark Directory as -> Sources Root.
+Navigate to your computer's folders and select the root QuizGame folder.
 
-Open src/com/quizgame/Main.java and click the green Run triangle!
+Once the project loads, expand the project view on the left. Right-click the src directory -> Mark Directory as -> Sources Root.
 
-🏢 About This Project
+Navigate down to src/com/quizgame/Main.java.
+
+Open Main.java and click the green Run triangle next to the public static void main method to start your quiz game instantly!
