@@ -1,67 +1,112 @@
-# Java-Swing-Quiz-Game
-# 🏆 Modern Java Swing Quiz Game
+# QuizGame
 
-A sleek, responsive, and fully automated **Java Swing** desktop application designed with a modern dark-mode aesthetic. This project tests core Java knowledge across multiple difficulty tiers while implementing advanced concurrent thread handling, real-time timer countdowns, and dynamic visual layouts.
-
----
-
-## ✨ Features
-
-* **Custom Dark Theme:** Modern look and feel utilizing a flat, high-contrast dark palette tailored for developer comfort.
-* **Dynamic Difficulty Selection:** Filters and builds unique question decks dynamically based on user choice (**Easy**, **Medium**, **Hard**).
-* **Live 12-Second Countdown:** Driven by a concurrent Swing background timer thread that tracks time per question.
-* **Automated AFK/Timeout Loop:** Non-blocking handling for idle users. If the timer hits zero, the UI smoothly transitions, displays an automated warning, and advances automatically without freezing.
-* **Fully Responsive Layout:** Built using custom nested `GridBagLayout` override configurations to look clean on compact default window states or full-screen displays without stretching.
-* **Performance Metrics:** Displays an end-game score report with custom, color-coded badges and personalized feedback statements depending on the final percentage achieved.
+A desktop quiz application built with Java Swing as part of an internship project at **Pinnacle Labs**.
 
 ---
 
-## 📂 Project Architecture
+## Internship Details
 
-The codebase follows a modular design pattern, strictly separating data models, UI layers, and runtime logical components:
+| Field | Details |
+|---|---|
+| Organization | Pinnacle Labs |
+| Project | QuizGame — Java Desktop Application |
+| Technology | Java 16+, Swing |
 
+---
 
+## Overview
+
+QuizGame is a single-file, dependency-free desktop application that presents users with multiple-choice questions, tracks their score, and displays results at the end of each session. The application is built entirely with Java's built-in Swing library — no external dependencies required.
+
+---
+
+## Project Structure
+
+```
 QuizGame/
-└── src/
-    └── com/
-        └── quizgame/
-            ├── Main.java          # Application Entry Point & Question Dataset Pool
-            ├── model/
-            │   ├── Question.java  # Blueprint for individual question structures
-            │   └── Quiz.java      # State tracker for core quiz data and scoring
-            ├── engine/
-            │   └── GameEngine.java # Main Controller managing core game loops and timing
-            └── view/
-                └── QuizWindow.java # GUI View layout rendering all Swing elements
+├── src/
+│   └── com/quizgame/
+│       ├── engine/
+│       │   └── GameEngine.java       # Core game logic and state management
+│       ├── model/
+│       │   ├── Question.java         # Question data model (text + options + answer)
+│       │   └── Quiz.java             # Quiz container (holds list of Questions)
+│       ├── view/
+│       │   └── (UI components)       # Swing panels and windows
+│       └── Main.java                 # Entry point — launches the application
+├── bin/                              # Compiled .class files
+├── out/                              # Build output directory
+├── .gitignore
+└── QuizGame.iml                      # IntelliJ IDEA module file
+```
 
+---
 
-🚀 Getting Started
-Prerequisites
-Make sure you have Java Development Kit (JDK 8 or higher) installed on your machine. You can verify this by running java -version in your terminal.
+## Architecture
 
-💻 Installation & Execution (Using Terminal)
-Clone the repository:
+The project follows a clean separation of concerns across three layers.
 
-Bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/java-swing-quiz-game.git
-cd java-swing-quiz-game
-Compile all Java files: This command creates a bin directory and compiles all your packages into it:
+**Model** (`com.quizgame.model`)
+Holds the data. `Question` represents a single quiz item — the question text, answer choices, and the correct answer. `Quiz` is a collection of `Question` objects that makes up one full game session.
 
-Bash
-javac -d bin src/com/quizgame/model/*.java src/com/quizgame/view/*.java src/com/quizgame/engine/*.java src/com/quizgame/Main.java
-Run the application: Launch the game by pointing Java to your compiled Main class inside the classpath:
+**Engine** (`com.quizgame.engine`)
+`GameEngine` drives the game. It tracks the current question index, validates answers, updates the score, and signals when the quiz is complete.
 
-Bash
-java -cp bin com.quizgame.Main
-🛠️ Running in IntelliJ IDEA
-If you prefer using an IDE instead of the terminal, follow these simple steps:
+**View** (`com.quizgame.view`)
+Swing-based UI components. These listen to the engine and update the display — question text, answer buttons, score counter, and the results screen.
 
-Open IntelliJ IDEA and click Open.
+**Entry Point** (`Main.java`)
+Bootstraps the application, wires the engine to the view, and starts the Swing event dispatch thread.
 
-Navigate to your computer's folders and select the root QuizGame folder.
+---
 
-Once the project loads, expand the project view on the left. Right-click the src directory -> Mark Directory as -> Sources Root.
+## Requirements
 
-Navigate down to src/com/quizgame/Main.java.
+- Java 16 or higher
+- No external libraries or build tools required
 
-Open Main.java and click the green Run triangle next to the public static void main method to start your quiz game instantly!
+---
+
+## Build and Run
+
+**Compile**
+
+```bash
+javac -d out src/com/quizgame/model/*.java \
+             src/com/quizgame/engine/*.java \
+             src/com/quizgame/view/*.java \
+             src/Main.java
+```
+
+**Run**
+
+```bash
+java -cp out Main
+```
+
+Or from IntelliJ IDEA, right-click `Main.java` and select **Run 'Main'**.
+
+---
+
+## Features
+
+- Multiple-choice question format
+- Score tracking across the session
+- Results summary at the end of the quiz
+- Lightweight — runs on any machine with Java installed
+- No internet connection or external dependencies needed
+
+---
+
+## How It Works
+
+1. `Main.java` starts the app and initializes `GameEngine` with a `Quiz`.
+2. The `GameEngine` serves questions one at a time to the `view` layer.
+3. The user selects an answer; the engine checks it and updates the score.
+4. Once all questions are answered, the results screen is shown.
+
+---
+
+## Author
+
+Developed by **Nikhil** during an internship at **Pinnacle Labs**.
